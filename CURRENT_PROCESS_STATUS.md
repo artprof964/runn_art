@@ -1,7 +1,7 @@
 # Current Process Status
 
 Date: 2026-06-03 Europe/Vienna
-Status: Harness git initialized; initial documentation push in progress; implementation blocked pending approved change requests
+Status: Harness git initialized and pushed to `origin/main`; implementation blocked pending approved change requests
 Scope: Harness docs only; MARACA and AI-Art read-only
 
 ## Context Gate
@@ -42,6 +42,5 @@ Scope: Harness docs only; MARACA and AI-Art read-only
 
 ## Next Gate
 
-- Push initial Harness documentation commit to `origin/main`.
 - Select and validate one exact change request before any code-worker implementation.
 - Do not implement CR-HAR, CR-MAR, or CR-AIA until validator approves exact scope.

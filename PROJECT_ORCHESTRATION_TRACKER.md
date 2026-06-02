@@ -45,7 +45,7 @@ Rule: do not edit existing MARACA or AI-Art code without approved change request
 | Confirm GitHub remotes | done | MARACA `artprof964/maraca_v02`; AI-Art `artprof964/AI-Artist` |
 | Record Harness target repo | done | user supplied `git@github.com:artprof964/runn_art.git` |
 | Initialize Harness git | done | branch `main`; origin `git@github.com:artprof964/runn_art.git` |
-| Push initial Harness docs | in_progress | initial commit pending push to `origin/main` |
+| Push initial Harness docs | done | initial commit pushed to `origin/main` |
 | Evaluator rerun | failed_once | stale git-status wording found |
 | Git-status remediation | done | docs updated to clean MARACA/AI-Art status |
 | Final evaluator/tester pass | done | passed; expected blockers only |
@@ -73,6 +73,7 @@ Rule: do not edit existing MARACA or AI-Art code without approved change request
 | FIN-006 | AI-Art/AI-Artist git status rechecked clean on `main...origin/main` |
 | FIN-007 | Harness target repo recorded as `git@github.com:artprof964/runn_art.git` |
 | FIN-008 | Harness git initialized on `main` with origin `git@github.com:artprof964/runn_art.git` |
+| FIN-009 | Initial Harness documentation pushed to `origin/main` |
 
 ## Dependency Rule
 

@@ -102,5 +102,5 @@ Full symbol list: `PROJECT_FILE_FUNCTION_MODULE_OVERVIEW.md`.
 - Discovery done.
 - Documentation/tracker setup complete.
 - Evaluator/tester review passed.
-- Harness git initialized and origin configured.
+- Harness git initialized, origin configured, and initial documentation pushed to `origin/main`.
 - Implementation blocked pending validator-approved CR.
