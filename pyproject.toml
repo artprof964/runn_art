@@ -1,0 +1,5 @@
+[project]
+name = "harness-age-mem-v02"
+version = "0.1.0"
+description = "Harness orchestration contracts."
+requires-python = ">=3.11"

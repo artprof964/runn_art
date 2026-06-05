@@ -1,46 +1,447 @@
 # Current Process Status
 
-Date: 2026-06-03 Europe/Vienna
-Status: Harness git initialized and pushed to `origin/main`; implementation blocked pending approved change requests
-Scope: Harness docs only; MARACA and AI-Art read-only
+Date: 2026-06-05 Europe/Vienna
+Status: CR-HAR-001 through CR-HAR-025 implemented and tested locally, with CR-HAR-025 focused/full/compile verification complete; MARACA v2 pull/read sync remains current
+Scope: Harness contract records, AI-Art safety gateway wrapper, MARACA evidence gateway wrapper including MARACA v2 `evidence` alias compatibility, pure gate state machine, inert scheduler planner, blocked read-only social watch candidate interface, explicit-path run ledger, inert Harness policy gateway/client boundary, manual-only Harness coordinator, Harness approval decision boundary, Harness approval inbox composition boundary, Harness human-review gate package boundary, Harness approval audit binding boundary, Harness approval audit ledger recording boundary, Harness optional MARACA runtime readiness boundary, Harness runtime integration preflight summary boundary, Harness MARACA runtime invocation envelope boundary, Harness MARACA runtime result intake boundary, Harness MARACA runtime result ledger recording boundary, Harness explicit ledger checkpoint boundary, Harness explicit ledger checkpoint receipt verification boundary, Harness checkpoint promotion readiness boundary, Harness checkpoint promotion intent binding boundary, Harness checkpoint promotion intent ledger recording boundary, additive MARACA evidence bundle export adapter, additive MARACA social source candidate mapper, additive MARACA LLM connection registry, MARACA documented backend env-var wiring, additive AI-Art media release gate, social-scout blocked contract tests/docs, AI-Art adapter-factory media release gate exposure, AI-Art publishing consumption of a precomputed media release gate result, AI-Art publish-local release binding enforcement, and AI-Art signed publish binding verification only
 
 ## Context Gate
 
 - Check: context/window usage requested before new tasks or agents.
-- Tool result: no active goal or token-budget object exposed.
-- Decision: threshold treated as under 50 percent because no budget overflow was reported and this turn had usable context.
-- Risk: exact percentage unavailable.
-- Rule: if later context exceeds 50 percent, stop starting new tasks/agents, update tracker/status/handoff, and continue in a new chat.
+- Tool result: active goal reported 3,925,926 tokens used during CR-AIA-006 verification, with no explicit remaining budget.
+- Decision: CR-HAR-025 is now the latest completed safe unit after exact-scope implementation and local verification.
+- Rule applied: finish CR-HAR-025 close-up, update tracker/status/handoff, and require a new proposed CR plus validator review before any later implementation.
 
 ## Agents
 
 - Outline agent: complete. Model: gpt-5.5, reasoning: xhigh. Mode: read-only.
 - Validation/rules agent: complete. Model: gpt-5.5, reasoning: medium. Mode: read-only.
-- Code-worker agent: not started. Reason: no validated implementation change request approved.
-- Evaluator/tester agent: passed after documentation remediation.
+- CR-HAR-001 code-worker agent: complete in local Harness files.
+- CR-HAR-001 evaluator/tester review: passed by focused tests plus scope/no-service-call inspection.
+- CR-HAR-001 documentation close-up validator/evaluator agents: complete and closed.
+- CR-HAR-002 validator agent: passed; exact owned files were `src/harness_orchestrator/adapters/ai_art_safety_gateway.py` and `tests/test_ai_art_safety_gateway.py`.
+- CR-HAR-002 code-worker agent: complete in owned files only.
+- CR-HAR-002 evaluator/tester review: passed by focused tests, full unittest discovery, compileall, and scope inspection.
+- CR-HAR-003 validator agent: passed; exact owned files were `src/harness_orchestrator/adapters/maraca_evidence_gateway.py` and `tests/test_maraca_evidence_gateway.py`.
+- CR-HAR-003 code-worker agent: complete in owned files only.
+- CR-HAR-003 evaluator/tester review: passed by focused tests, full unittest discovery, compileall, and scope inspection.
+- CR-HAR-004 validator agent: passed; exact owned files were `src/harness_orchestrator/gate_state_machine.py` and `tests/test_gate_state_machine.py`.
+- CR-HAR-004 code-worker agent: complete in owned files only.
+- CR-HAR-004 evaluator/tester review: passed twice; final pass covered stricter empty-evidence blocking.
+- CR-HAR-005 validator agent: passed; exact owned files were `src/harness_orchestrator/scheduler.py` and `tests/test_scheduler.py`.
+- CR-HAR-005 code-worker agent: complete in owned files only.
+- CR-HAR-005 evaluator/tester review: passed after empty-schedule close-up fix.
+- CR-HAR-006 validator agent: passed; exact owned files were `src/harness_orchestrator/watch_social.py` and `tests/test_watch_social.py`.
+- CR-HAR-006 code-worker agent: complete in owned files only.
+- CR-HAR-006 evaluator/tester review: passed with no required remediation.
+- CR-HAR-007 validator agent: passed; exact owned files were `src/harness_orchestrator/run_ledger.py` and `tests/test_run_ledger.py`.
+- CR-HAR-007 code-worker agent: complete in owned files only.
+- CR-HAR-007 evaluator/tester review: passed with no required remediation.
+- CR-HAR-008 proposal review agent: passed; selected a Harness-only policy gateway/client boundary as the next smallest safe CR.
+- CR-HAR-008 validator agent: passed; exact owned files were `src/harness_orchestrator/adapters/policy_gateway.py` and `tests/test_policy_gateway.py`.
+- CR-HAR-008 evaluator/tester review: passed after mapping-envelope operation preservation was added and retested.
+- CR-HAR-009 worker agent: complete in owned Harness files only.
+- CR-HAR-009 validator/evaluator review: passed after stale status wording in tracker and overview docs was remediated.
+- CR-HAR-010 validator agent: passed; exact owned files were `src/harness_orchestrator/coordinator.py` and `tests/test_coordinator.py`.
+- CR-HAR-010 code-worker agent: complete in owned files only.
+- CR-HAR-010 evaluator/tester review: passed with no required remediation.
+- CR-HAR-011 validator review: passed before coding; exact owned files were `src/harness_orchestrator/approval_decisions.py` and `tests/test_approval_decisions.py`. The stricter project pre-code gate was preserved over the worker-then-validator wording.
+- CR-HAR-011 code-worker review: complete in owned files only.
+- CR-HAR-011 validator/evaluator review: passed with no required remediation.
+- CR-HAR-012 pre-code validator review: passed; exact owned files were `src/harness_orchestrator/approval_inbox.py` and `tests/test_approval_inbox.py`.
+- CR-HAR-012 code-worker review: complete in owned files only.
+- CR-HAR-012 validator/evaluator review: passed after duplicate inbox item ambiguity was explicitly failed closed.
+- CR-HAR-013 proposal review: GREEN; selected a Harness-only human-review gate package boundary as the next smallest safe dependency after CR-HAR-012.
+- CR-HAR-013 worker dispatch: initially blocked in OA1 due unavailable thread tooling; parent later spawned worker `019e94b8-6ded-74e2-bb23-e047fd186c8d`.
+- CR-HAR-013 worker `019e94b8-6ded-74e2-bb23-e047fd186c8d`: complete in owned files only after parent dispatch.
+- CR-HAR-013 post-worker validator review: RED. Scope and forbidden-side-effect checks passed, but the implementation can approve a package when `ApprovalInboxResult.request` carries different media ids from the caller request while the gate decision media ids match the caller.
+- CR-HAR-013 post-remediation validator review: GREEN. Worker remediated in the same owned files; approval now requires caller request media ids to match both `ApprovalInboxResult.request.metadata` and `GateDecision.metadata`, focused test command passed 10 tests, and scope scan found only deliberate forbidden-term guard strings in the test file.
+- CR-HAR-013 evaluator review: RED. Focused tests passed 10 OK, full Harness unittest discovery passed 104 OK, compileall passed, and scope scan found only deliberate forbidden-term guard strings in the test file. Acceptance is not fully met because a caller request with no media ids can approve when the gate decision carries unexpected media ids. Required remediation is to compare caller request media ids and gate decision media ids unconditionally and add a focused regression test in the CR-HAR-013 owned files only.
+- CR-HAR-013 evaluator-remediation validator review: GREEN. Worker remediated in the same owned files; `_gate_blockers` now compares caller request media ids and gate decision media ids unconditionally, focused tests passed 11 OK, the evaluator edge now blocks with `human-review-media-mismatch`, and scope scan found only deliberate forbidden-term guard strings in the test file.
+- CR-HAR-013 final evaluator review: GREEN. Focused tests passed 11 OK, full Harness unittest discovery passed 105 OK, compileall passed, the previous extra-gate-media evaluator probe fails closed with `human-review-media-mismatch`, and scope scan found only deliberate forbidden-term guard strings in the test file.
+- CR-HAR-014 proposal review: GREEN; selected a Harness-only human-review approval audit binding boundary as the next smallest safe residual risk after CR-HAR-013.
+- CR-HAR-014 worker `019e94d2-5d6c-7222-b085-db44ace7ea44`: complete in owned files only.
+- CR-HAR-014 validator review: GREEN. Focused tests passed 9 OK, full Harness unittest discovery passed 114 OK, compileall passed, and scope scan found only deliberate forbidden-term guard strings in the test file.
+- CR-HAR-014 evaluator review `019e94d6-3e7c-71e0-8c66-3d826e98c0ed`: GREEN. Focused tests passed 9 OK, full Harness unittest discovery passed 114 OK, compileall passed, custom gate-name determinism probe passed, evidence-bundle mismatch failed closed, and no forbidden side effects were found.
+- CR-HAR-015 proposal/OA1 review `019e94df-59c0-74c3-8b1e-b1d72d44bf23`: GREEN; selected a Harness-only approval audit ledger recording boundary as the next smallest safe residual risk after CR-HAR-014, with exact owned files `src/harness_orchestrator/approval_audit_ledger.py` and `tests/test_approval_audit_ledger.py`.
+- CR-HAR-015 worker `019e94e0-e9b4-7be3-b89c-dd72f9d00691`: stalled after partial implementation; parent completed the validator-owned scope only.
+- CR-HAR-015 validator review `019e94e7-1b92-7d90-bea3-9d890060a117`: initial RED for missing duplicate payload digest detection against existing ledger events; parent remediated inside owned files; final validator GREEN with focused 11 OK, full Harness 125 OK, compileall OK, and clean implementation side-effect scan.
+- CR-HAR-015 evaluator review `019e94f0-20a2-72d1-84ee-d8ea29862ca0`: GREEN. Focused tests passed 11 OK, full Harness unittest discovery passed 125 OK, compileall passed, independent same-payload/different-event-id ledger mutation probe passed, and no implementation side effects were found.
+- CR-HAR-016 proposal/OA1 review `019e94f9-8926-7dd2-96b1-dec2b17d3f2b`: GREEN; selected a Harness-only optional MARACA runtime readiness boundary with exact owned files `src/harness_orchestrator/maraca_runtime_readiness.py` and `tests/test_maraca_runtime_readiness.py`.
+- CR-HAR-016 worker implementation: parent completed the exact owned scope after create-thread tooling failed.
+- CR-HAR-016 validator review `019e94fd-7cc4-7a51-a533-aa8f239327cd`: GREEN. Focused tests passed 11 OK, full Harness unittest discovery passed 136 OK, compileall passed, and no forbidden runtime/service behavior was found.
+- CR-HAR-016 evaluator review `019e94ff-01d4-7771-8022-0cf5d73cf53d`: GREEN. Focused tests passed 11 OK, full Harness unittest discovery passed 136 OK, compileall passed, and the independent secret-like required package/config redaction edge probe passed.
+- CR-HAR-017 proposal/OA1 review `019e9507-c9cf-7d21-a8cf-d1a824b641b1`: GREEN; selected a Harness-only runtime integration preflight summary boundary with exact owned files `src/harness_orchestrator/runtime_integration_preflight.py` and `tests/test_runtime_integration_preflight.py`.
+- CR-HAR-017 worker `019e9508-cf51-7b00-84d6-6cf932b8b5a5`: stalled without writing files; parent completed the exact owned scope only.
+- CR-HAR-017 validator review `019e950c-a824-7091-8eb7-f623a64c8db3`: GREEN. Focused tests passed 12 OK, full Harness unittest discovery passed 148 OK, compileall passed, redaction probe passed, and no forbidden runtime/service behavior was found.
+- CR-HAR-017 evaluator review: three evaluator threads failed at the Codex thread/session layer before work (`019e950f-1d38-75f2-b0f8-14b62a6b7d4b`, `019e950f-a605-71e0-858a-95b9772c2803`, `019e9510-169c-7ae0-9c2a-a36c1c134f21`); parent ran the evaluator checklist locally and got focused 12 OK, full Harness 148 OK, compileall OK, independent secret-redaction/non-mutation probe OK, stdlib-only imports, and no forbidden implementation behavior.
+- CR-HAR-018 proposal/OA1 review: GREEN after fresh post-CR-HAR-017 proposal/dependency review; exact owned files were `src/harness_orchestrator/maraca_runtime_invocation.py` and `tests/test_maraca_runtime_invocation.py`.
+- CR-HAR-018 worker `019e9613-0806-7b01-b5a1-b511ad61da4e`: stalled before writing files and was superseded.
+- CR-HAR-018 replacement worker `019e9614-a269-7fd3-919d-361c7267915f`: complete in exact owned files only. Pre-remediation focused tests passed 12 OK, full Harness unittest discovery passed 160 OK, and compileall passed.
+- CR-HAR-018 validator `019e9616-626c-7be2-86aa-9889e102844e`: hit a mid-edit race/stalled and produced no final verdict.
+- CR-HAR-018 replacement validator `019e9618-85c8-7910-90e3-c5dabf1922bb`: GREEN on the pre-remediation state before the later nested-object evaluator finding; compileall, independent redaction/non-mutation probe, and forbidden-runtime scan passed.
+- CR-HAR-018 initial evaluator `019e961a-e198-76f1-86f4-6ee27ca7b3ac`: RED because nested request-like dataclass/to_dict objects could leak raw secret-like names/values through `result.to_dict()`.
+- CR-HAR-018 remediation validator `019e961e-7f18-72d1-a923-751d0ef7ada7`: GREEN with focused 13 OK, full Harness 161 OK, compileall OK, independent nested redaction/non-mutation probe OK, and no forbidden runtime behavior.
+- CR-HAR-018 final evaluator rerun `019e9621-99bc-7731-8daa-2a9adf252017`: GREEN with focused 13 OK, full Harness 161 OK, compileall OK, independent nested redaction/fail-closed/non-mutation probe OK, source scan clean, and no MARACA or AI-Art code touched.
+- CR-HAR-019 proposal/OA1 review: first OA1 `019e9628-50cc-7692-8b0e-55f366af7870` stalled; replacement OA1 `019e9629-a3ee-7d21-9d16-0f386d762407` GREEN for a Harness-only MARACA runtime result intake boundary with exact owned files `src/harness_orchestrator/maraca_runtime_result_intake.py` and `tests/test_maraca_runtime_result_intake.py`.
+- CR-HAR-019 worker `019e962a-aeee-76c3-a5cf-b11f6c973caa`: stalled after reading and wrote no files; parent completed the exact owned scope only.
+- CR-HAR-019 validator `019e962e-12ca-7cc3-b0a8-839d1b218d16`: GREEN with focused 13 OK and no-edit probes/scans.
+- CR-HAR-019 evaluator `019e962f-b0e8-7772-984d-35a34bb4a6d0`: GREEN with focused 13 OK, full Harness 174 OK, compileall OK, independent nested dataclass/to_dict redaction plus identity mismatch and structural no-mutation probe OK, and no forbidden runtime behavior.
+- CR-HAR-020 proposal/OA1 review `019e9636-d886-74c0-b8eb-4cf9a8b6c6e7`: GREEN for a Harness-only MARACA runtime result ledger recording boundary with exact owned files `src/harness_orchestrator/maraca_runtime_result_ledger.py` and `tests/test_maraca_runtime_result_ledger.py`.
+- CR-HAR-020 worker `019e9638-5d95-7223-acc5-50f58bac3f56`: stalled before creating files; parent completed the exact owned scope only.
+- CR-HAR-020 validator review: validator `019e963c-d925-7660-8964-dc53614f5e7d` reported focused 9 OK and no-mutation probes before stalling without final verdict; replacement validator `019e963f-6c34-7723-b3d1-1691b973725f` also stalled before final verdict.
+- CR-HAR-020 evaluator `019e9640-aa58-7e10-a791-ffc2a2bd93ca`: GREEN with focused 9 OK, full Harness 183 OK, compileall OK, independent plain mapping, duplicate payload digest no-mutation, secret-like no-mutation probes, clean implementation scan, and scope inspection.
+- CR-HAR-021 proposal/OA1 review `019e964e-4d39-7473-b30a-d86c4c2778fe`: GREEN for a Harness-only explicit ledger checkpoint boundary with exact owned files `src/harness_orchestrator/ledger_checkpoint.py` and `tests/test_ledger_checkpoint.py`.
+- CR-HAR-021 worker `019e964f-dfcd-7ae2-a65b-89c53f8c5bf5`: stalled before creating files; parent completed the exact owned scope only.
+- CR-HAR-021 validator/evaluator review: validator attempts `019e9653-45c1-75e3-a616-015d06ea217d`, `019e9654-a477-7e23-991a-efd6da5bc369`, and `019e9656-24a0-79a2-a0f2-38a34671f9bb` stalled before final verdict; evaluator `019e9657-0a21-7b63-a71c-ef560e0190dc` stalled after starting checks; parent checklist GREEN after focused 12 OK, full Harness 195 OK, compileall OK, deterministic digest/no-mutation/fail-closed no-write probe OK, forbidden source scan clean, and scope inspection.
+- CR-HAR-022 proposal/OA1 review: OA1 `019e965d-7431-7a90-81b2-48794f647258` visibly marked the Harness-only checkpoint receipt verifier candidate GREEN before stalling; replacement OA1 `019e965f-2047-7f83-962a-2b755fc25555` also stalled before final text.
+- CR-HAR-022 worker `019e9660-129a-7f52-81b3-2233942c9962`: returned WORKER RED after unstable edits/tests; parent remediated only the exact owned scope.
+- CR-HAR-022 validator/evaluator review: validator `019e966a-b3ae-75d2-9962-82cf5f736d99` stalled after starting read-only checks; parent validator checklist GREEN after focused 11 OK, full Harness 206 OK, compileall OK, frozen/no-mutation/fail-closed receipt probe OK, forbidden source scan clean, and scope inspection. First evaluator `019e966c-0003-7c60-8e81-20514857c036` returned RED only because it was interrupted before full discovery/compileall; replacement evaluator `019e966f-dbf8-7ac3-8ce9-2e68fe57a713` returned GREEN after focused 11 OK, full Harness 206 OK, compileall OK, clean forbidden scan, and exact scope check.
+- CR-HAR-023 proposal/OA1 review: OA1 `019e9674-8167-7a50-bf6a-977cb420cb65` returned GREEN for a Harness-only checkpoint promotion readiness boundary with exact owned files `src/harness_orchestrator/ledger_checkpoint_promotion_readiness.py` and `tests/test_ledger_checkpoint_promotion_readiness.py`.
+- CR-HAR-023 worker/remediation: initial worker `019e9675-e600-75c3-bd90-67558c032906` stalled before files appeared; replacement worker `019e9677-ba49-7da0-a82d-448607220025` created the two owned files but returned RED after a parent stop/fallback race. First evaluator `019e967f-7aba-7ce1-9d6b-c38463b9d650` returned RED for nested `checkpoint_result` metadata accepted; parent remediated only the exact owned files.
+- CR-HAR-023 validator/evaluator review: remediation validator `019e9682-476c-7833-aa97-185471d3982b` returned GREEN after focused 12 OK, direct top-level/nested checkpoint-result probes, and source scan. Replacement evaluator `019e9683-8ed5-7543-9126-9247f7113f93` returned GREEN after focused 12 OK, full Harness 218 OK, compileall OK, clean source scan, top-level accepted/nested duplicate blocked probes, no-mutation probe, and exact scope/status check.
+- CR-HAR-024 proposal/OA1 review: OA1 `019e968b-d7cd-7a23-9a82-0e73d69b03f2` returned GREEN for a Harness-only checkpoint promotion intent binding boundary with exact owned files `src/harness_orchestrator/ledger_checkpoint_promotion_intent.py` and `tests/test_ledger_checkpoint_promotion_intent.py`.
+- CR-HAR-024 worker/remediation: initial worker `019e968d-0193-7020-a19b-10ee6ccf14d9` stalled/unreachable before file completion; replacement worker `019e968e-9452-71d3-abb1-8ce1edbfd9aa` raced/stalled, and parent restored/remediated only the exact owned files.
+- CR-HAR-024 validator/evaluator review: validator `019e9768-2309-74b1-a5e7-1cb60d5bdecf` returned GREEN after clarifying inherited Harness dirty-tree scope; evaluator `019e976a-f3d8-7a12-8202-00fd7f3c42e2` returned GREEN after focused 9 OK, full Harness 227 OK, compileall OK, forbidden source scan clean, caller mutation probe, secret-key redaction check, and exact scope/status check.
+- CR-HAR-025 worker/verification: implemented only `src/harness_orchestrator/ledger_checkpoint_promotion_ledger.py` and `tests/test_ledger_checkpoint_promotion_ledger.py`; focused unittest passed 12 OK, full Harness unittest discovery passed 239 OK, and compileall over `src tests` passed. Added source guard plus duplicate existing ledger event/dependency/intent digest no-mutation, plain mapping input, blocked result no-mutation, secret/execution-intent fail-closed, and caller mapping no-mutation tests.
+- CR-MAR-001 validator agent: passed; exact MARACA owned files were `src/synthesis/evidence_bundle.py` and `tests/test_evidence_bundle_export.py`.
+- CR-MAR-001 code-worker agent: complete in owned files only.
+- CR-MAR-001 evaluator/tester review: passed with no required remediation.
+- CR-MAR-002 validator agent: passed; exact MARACA owned files were `src/ingestion/social_source_candidates.py` and `tests/test_social_source_candidates.py`.
+- CR-MAR-002 code-worker agent: complete in owned files only.
+- CR-MAR-002 evaluator/tester review: passed after separately accounting for pre-existing CR-MAR-001 untracked files.
+- CR-MAR-003 validator agent: passed; exact MARACA owned files were `src/shared/connection_settings.py`, `tests/test_connection_settings.py`, and `.env.example`.
+- CR-MAR-003 code-worker agent: complete in owned files only.
+- CR-MAR-003 evaluator/tester review: passed with pre-existing CR-MAR-001/002 artifacts separately accounted.
+- CR-MAR-004 validator agent: passed; exact MARACA owned files were `src/backend_app/health.py`, `src/storage/qdrant_runtime.py`, `src/storage/neo4j_runtime.py`, `tests/test_backend_health.py`, and `tests/test_backend_adapters.py`.
+- CR-MAR-004 code-worker agent: complete in owned files only.
+- CR-MAR-004 evaluator/tester review: passed with pre-existing CR-MAR-001/002/003 artifacts separately accounted.
+- CR-AIA-001 validator agent: passed; exact AI-Art owned files were `backend/media_release_gate.py` and `tests/test_media_release_gate.py`.
+- CR-AIA-001 code-worker agent: complete in owned files only.
+- CR-AIA-001 evaluator/tester review: passed with only authorized AI-Art files changed.
+- CR-AIA-002 validator agent: passed; exact AI-Art owned files were `tests/test_social_scout_contracts.py`, `workspaces/social-scout/AGENTS.md`, and `workspaces/social-scout/TOOLS.md`.
+- CR-AIA-002 code-worker agent: complete in owned files only.
+- CR-AIA-002 evaluator/tester review: passed with only authorized CR-AIA-002 files changed; CR-AIA-001 files accounted separately.
+- CR-AIA-003 validator agent: passed; exact AI-Art owned files were `backend/adapter_factory.py` and `tests/test_adapter_factory.py`.
+- CR-AIA-003 code-worker agent: complete in owned files only.
+- CR-AIA-003 evaluator/tester review: passed with only authorized CR-AIA-003 files changed; CR-AIA-001/002 files accounted separately.
+- CR-AIA-004 proposal review agent: passed; selected publishing consumption of a precomputed media release gate result as the next smallest safe CR.
+- CR-AIA-004 validator agent: passed; exact AI-Art owned files were `backend/publishing_adapter.py`, `backend/publishing.py`, `tests/gated_adapter_helpers.py`, `tests/test_publishing_adapter.py`, and `tests/test_publishing_agent.py`.
+- CR-AIA-004 code-worker agent: complete in owned files only.
+- CR-AIA-004 evaluator/tester review: passed with only authorized CR-AIA-004 files changed; CR-AIA-001/002/003 files accounted separately.
+- CR-AIA-005 proposal review agent: passed; selected publish-local binding of precomputed media release gate results as the next smallest safe CR.
+- CR-AIA-005 validator agent: passed; exact AI-Art owned files were `backend/publishing_adapter.py`, `backend/publishing.py`, `backend/publishing_contracts.py`, `tests/gated_adapter_helpers.py`, `tests/test_publishing_adapter.py`, `tests/test_publishing_agent.py`, and `tests/test_publishing_contracts.py`.
+- CR-AIA-005 code-worker agent: complete in owned files only.
+- CR-AIA-005 evaluator/tester review: passed with only authorized CR-AIA-005 files changed; CR-AIA-001/002/003/004 files accounted separately.
+- CR-AIA-006 proposal review agent: passed; selected signed verification of the publish-local media release binding as the next smallest safe CR.
+- CR-AIA-006 validator agent: passed; exact AI-Art owned files were `backend/publishing_adapter.py`, `backend/publishing_contracts.py`, `tests/gated_adapter_helpers.py`, `tests/test_publishing_adapter.py`, `tests/test_publishing_agent.py`, and `tests/test_publishing_contracts.py`.
+- CR-AIA-006 code-worker agent: complete in owned files only.
+- CR-AIA-006 evaluator/tester review: initial read-only review requested constant-time signature comparison; after remediation it passed with prior CR-AIA-001/002/003/004/005 files accounted separately.
 
 ## Current Findings
 
-- Harness path has no source files beyond documentation/tracker files.
+- MARACA v2 pull/read request is complete: pull returned `Already up to date`.
+- MARACA current HEAD equals `origin/main`: `84bdbfa1dd50ab92ee2492fffae457216c5667cd` (`84bdbfa`, "Validate backend defaults and evidence utilities").
+- MARACA latest commit inventory covers 22 files: `.env.example`, `README.md`, `current_process_status.md`, `project_generalize.md`, `project_generalize_handoff.md`, `project_generalize_tracker.md`, `project_tests.md`, `src/backend_app/health.py`, `src/evaluation/__init__.py`, `src/feedback/__init__.py`, `src/ingestion/social_source_candidates.py`, `src/shared/connection_settings.py`, `src/storage/neo4j_runtime.py`, `src/storage/qdrant_runtime.py`, `src/synthesis/evidence_bundle.py`, `tests/test_backend_adapters.py`, `tests/test_backend_health.py`, `tests/test_broader_repository_save_parity.py`, `tests/test_connection_settings.py`, `tests/test_evidence_bundle_export.py`, `tests/test_repository_hook_parity.py`, and `tests/test_social_source_candidates.py`.
+- Harness dependency implications for any next proposal: consider MARACA evidence bundle export, social source candidate mapping, connection settings/default env behavior, and backend health/runtime defaults as synced source dependencies rather than Harness-owned implementation.
+- MARACA was read only for this sync; no MARACA files were edited here.
+- AI-Art was read only for this sync; existing local CR-AIA changes were not reverted or overwritten.
+- CR-HAR-009 is implemented, tested, validator-reviewed, and evaluator-reviewed locally as a narrow MARACA v2 alias compatibility update.
+- CR-HAR-010 is implemented, tested, validator-reviewed, and evaluator-reviewed locally as a Harness-only manual coordinator over already-built inert/injected boundaries.
+- CR-HAR-011 is implemented, tested, validator-reviewed, and evaluator-reviewed locally as a Harness-only approval decision boundary over explicit reviewer data.
+
+- Harness now has foundational contract records in `src/harness_orchestrator/contracts.py`.
+- Focused tests now exist in `tests/test_contracts.py`.
+- Harness now has an injectable, inert-by-default AI-Art safety gateway wrapper in `src/harness_orchestrator/adapters/ai_art_safety_gateway.py`.
+- Focused gateway tests now exist in `tests/test_ai_art_safety_gateway.py`.
+- Harness now has an injectable, inert-by-default MARACA evidence gateway wrapper in `src/harness_orchestrator/adapters/maraca_evidence_gateway.py`, including MARACA v2 `evidence` payload normalization.
+- Focused MARACA evidence gateway tests now exist in `tests/test_maraca_evidence_gateway.py`, including `evidence` alias and derived source-id fallback coverage.
+- Harness now has a pure gate state machine in `src/harness_orchestrator/gate_state_machine.py` that blocks release unless configured evidence, media, channel, and gate requirements pass.
+- Focused gate state machine tests now exist in `tests/test_gate_state_machine.py`.
+- Harness now has an inert twice-daily schedule planner in `src/harness_orchestrator/scheduler.py` with default 08:00/20:00 Europe/Vienna and injectable timezone/config/clock.
+- Focused scheduler tests now exist in `tests/test_scheduler.py`.
+- Harness now has a blocked read-only social watch candidate interface in `src/harness_orchestrator/watch_social.py` with disabled defaults, injectable allow-listed connectors, local/manual candidate data, and normalized candidate records.
+- Focused watch tests now exist in `tests/test_watch_social.py`.
+- Harness now has a run ledger/status persistence boundary in `src/harness_orchestrator/run_ledger.py` with in-memory defaults, explicit-path save/load, deterministic serialization, and records for gate decisions, dependencies, audit/status events, and unfinished tasks.
+- Focused run ledger tests now exist in `tests/test_run_ledger.py`.
+- Harness now has an inert policy gateway/client boundary in `src/harness_orchestrator/adapters/policy_gateway.py` that fails closed by default, accepts governed work or plain operation envelopes, supports injected callable/object clients only, normalizes policy responses into `GateDecision`, and redacts sensitive values.
+- Focused policy gateway tests now exist in `tests/test_policy_gateway.py`.
+- Harness now has a manual-only coordinator in `src/harness_orchestrator/coordinator.py` that composes injected/inert policy, MARACA evidence gateway, AI-Art safety gateway, release state machine, supplemental gate decisions, and an in-memory ledger for one governed run with gate decisions, evidence dependencies, and audit events.
+- Focused coordinator tests now exist in `tests/test_coordinator.py`.
+- Harness now has an approval decision boundary in `src/harness_orchestrator/approval_decisions.py` with frozen approval request/decision records, fail-closed pending approval, and conversion to `GateDecision(gate_name="human-review")`.
+- Focused approval decision tests now exist in `tests/test_approval_decisions.py`.
+- Harness now has an approval inbox composition boundary in `src/harness_orchestrator/approval_inbox.py` with frozen inbox/result records, deterministic exact-match decision selection, and fail-closed missing, mismatched, duplicate, ambiguous, or blocked decisions.
+- Focused approval inbox tests now exist in `tests/test_approval_inbox.py`.
+- Harness now has an optional MARACA runtime readiness boundary in `src/harness_orchestrator/maraca_runtime_readiness.py` that evaluates only explicit injected package/environment/config mappings, redacts secret-like names and values, and fails closed without importing MARACA or reading the real environment.
+- Focused MARACA runtime readiness tests now exist in `tests/test_maraca_runtime_readiness.py`.
+- Harness now has a MARACA runtime result ledger recording boundary in `src/harness_orchestrator/maraca_runtime_result_ledger.py` that records only accepted CR-HAR-019 intake data into an injected `RunLedger`, fails closed before mutation, and does not import MARACA or execute runtime behavior.
+- Focused MARACA runtime result ledger tests now exist in `tests/test_maraca_runtime_result_ledger.py`.
+- MARACA now has an additive evidence bundle export adapter in `src/synthesis/evidence_bundle.py` that maps existing MARACA records into deterministic plain payloads without changing retrieval behavior.
+- Focused MARACA export tests now exist in `tests/test_evidence_bundle_export.py`.
+- MARACA now has an additive social source candidate mapper in `src/ingestion/social_source_candidates.py` that maps inert watch/social candidate payloads into existing `SourceRecord`, freshness, and `IngestionJob` shapes without registry mutation or ingestion execution.
+- Focused MARACA social source candidate tests now exist in `tests/test_social_source_candidates.py`.
+- MARACA now has an additive LLM connection registry in `src/shared/connection_settings.py` using `deepseek-open-art` as the standard key, `DEEPSEEK_API_KEY` as an explicit alias, injected mappings only, and broad redaction helpers.
+- Focused MARACA connection registry tests now exist in `tests/test_connection_settings.py`.
+- MARACA `.env.example` now has an additive optional LLM adapter block while preserving existing Qdrant, Neo4j, and RAG defaults.
+- MARACA runtime and health now use the documented `QDRANT_COLLECTION` and `NEO4J_DATABASE` env vars while preserving explicit constructor override precedence and injectable clients.
+- Focused backend health and adapter tests now cover documented collection/database env-var reporting and runtime defaults.
+- AI-Art now has an additive pure media release gate in `backend/media_release_gate.py` that blocks release unless provenance, review status, critic result, security findings, and human approval all pass.
+- Focused AI-Art media release gate tests now exist in `tests/test_media_release_gate.py`.
+- AI-Art social-scout workspace docs now explicitly keep the role mock/read-only/local-candidate only and block real social API, scrape, network, provider, connector, and publishing paths until policy, allowlists, audit, compliance, and credentials exist.
+- Focused social-scout contract tests now exist in `tests/test_social_scout_contracts.py`.
+- AI-Art `AdapterFactory` now exposes the existing pure media release gate through `create_media_release_gate()` and `evaluate_media_release_gate(...)` without changing gate logic, publishing flow, env loading, credentials, or HTTP/network behavior.
+- Focused adapter-factory tests now cover the media release gate boundary and no-side-effect behavior.
+- AI-Art publishing now requires both a valid execution envelope and an explicit precomputed media release gate result before the publishing client is called.
+- Focused publishing adapter/agent tests now cover missing, malformed, blocked, inconsistent, and passing media release gate results plus blocked audit events.
+- AI-Art publishing now requires the precomputed media release gate result to be wrapped in a `PublishingMediaReleaseGateBinding` that matches the exact publish target, canonical payload hash, and payload `artifact_id` before the publishing client is called.
+- Focused publishing adapter/agent/contract tests now cover raw unbound gate rejection, malformed bindings, target mismatch, payload hash mismatch, artifact id mismatch, missing artifact id, and blocked audit events.
+- AI-Art publishing now requires that publish-local binding to carry a valid local HMAC signature covering the gate result, target, payload hash, and artifact id before the publishing client is called.
+- Focused publishing adapter/agent/contract tests now cover missing signatures, invalid signatures, tampered signed binding payloads, signature-failure audit events, deterministic signature payloads, and bound-field signature changes.
+- Minimal project metadata exists in `pyproject.toml`; tests run with bundled Python and `PYTHONPATH=src`.
 - Harness git initialized on branch `main`.
 - Harness origin configured: `git@github.com:artprof964/runn_art.git`.
-- MARACA is populated and clean on `main...origin/main`. No edits made.
-- AI-Art top path is not a git repository; nested `AI-Artist` is populated and clean on `main...origin/main`. No edits made.
+- MARACA is clean on `main...origin/main` at `84bdbfa`; CR-MAR-001 through CR-MAR-004 and related doc/runtime/test work are now present in the synced MARACA history.
+- AI-Art top path is not a git repository; nested `AI-Artist` is populated on `main...origin/main` with CR-AIA-001 through CR-AIA-006 local files.
 - MARACA remote confirmed: `git@github.com:artprof964/maraca_v02.git`.
 - AI-Art remote confirmed: `https://github.com/artprof964/AI-Artist.git`.
 - AI-Art already defines `deepseek-open-art` as the standard LLM API key in `backend/connection_settings.py`.
 - MARACA already has retrieval/orchestration boundaries, but no DeepSeek/OpenAI-compatible LLM API adapter.
 - AI-Art already has adapter factories, signed execution-envelope gates, human-approval publishing checks, provenance, critic, safety, source ingestion, and audit modules.
 
-## Files Created In Harness
+## Files Created Locally
 
+- `src/harness_orchestrator/contracts.py`: frozen dataclass records for `GovernedWorkRequest`, `EvidenceRequest`, `EvidenceBundle`, `MediaReleaseRequest`, and `GateDecision`.
+- `tests/test_contracts.py`: focused standard-library tests for construction, defaults, serialization, connector/channel data fields, and top-level immutability.
+- `src/harness_orchestrator/adapters/ai_art_safety_gateway.py`: configurable safety gateway wrapper with injectable client, no default network calls, and `GateDecision` mapping.
+- `tests/test_ai_art_safety_gateway.py`: focused standard-library tests for inert default behavior, configurable URL/key/path, fake-client request envelopes, response mapping, redaction, and side-effect guard terms.
+- `src/harness_orchestrator/adapters/maraca_evidence_gateway.py`: configurable evidence gateway wrapper with injectable client, no default MARACA calls, and `EvidenceBundle` mapping.
+- `tests/test_maraca_evidence_gateway.py`: focused standard-library tests for inert default behavior, copied `EvidenceRequest` data, fake-client request envelopes, response normalization, redaction, and side-effect guard terms.
+- `src/harness_orchestrator/gate_state_machine.py`: pure state machine that combines `MediaReleaseRequest`, `GateDecision`, and `EvidenceBundle` data into a final release `GateDecision`.
+- `tests/test_gate_state_machine.py`: focused standard-library tests for pass/block behavior, missing/failed/mismatched gates, missing/empty evidence, missing media/channel data, configurable gate requirements, and side-effect guard terms.
+- `src/harness_orchestrator/scheduler.py`: inert deterministic scheduler planner returning `ScheduleCandidate` records without executing work.
+- `tests/test_scheduler.py`: focused standard-library tests for default schedule, timezone/config overrides, boundary times, next-day rollover, clock injection, disabled/manual modes, empty schedules, DST offsets, and side-effect guard terms.
+- `src/harness_orchestrator/watch_social.py`: disabled-by-default read-only `SocialWatch` boundary returning `WatchCandidateResult` records without service, scheduler, or publishing execution.
+- `tests/test_watch_social.py`: focused standard-library tests for frozen records, inert defaults, fake connector normalization, allow-list blocking, local candidates, serialization, and side-effect guard terms.
+- `src/harness_orchestrator/run_ledger.py`: in-memory `RunLedger` with frozen dependency, audit, task, and snapshot records plus explicit-path JSON persistence.
+- `tests/test_run_ledger.py`: focused standard-library tests for frozen records, in-memory safety, gate decisions, dependency ordering, audit events, unfinished tasks, deterministic serialization, explicit save/load, and side-effect guard terms.
+- `src/harness_orchestrator/adapters/policy_gateway.py`: inert fail-closed policy gateway/client boundary with injected callable/object clients, response normalization, recursive redaction, and no service wiring.
+- `tests/test_policy_gateway.py`: focused standard-library tests for default blocking, injected clients, allow/deny normalization, malformed/client-error fail-closed behavior, embedded operation envelopes, redaction, and side-effect guard terms.
+- `src/harness_orchestrator/coordinator.py`: manual-only coordinator and frozen result record for one governed run over injected/inert Harness boundaries with in-memory ledger snapshots, evidence dependencies, gate decisions, and audit events.
+- `tests/test_coordinator.py`: focused standard-library tests for happy path, inert default block, policy short-circuit, evidence/safety error blocking, missing supplemental gates, and side-effect guard terms.
+- `src/harness_orchestrator/maraca_runtime_result_ledger.py`: explicit injected-ledger recorder for accepted MARACA runtime result intake records with deterministic dependency/audit payloads and fail-closed duplicate/secret/malformed checks before mutation.
+- `tests/test_maraca_runtime_result_ledger.py`: focused standard-library tests for accepted recording, malformed/blocked/mismatched input, duplicate payloads, secret-like data, frozen serialization, and side-effect guards.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\src\synthesis\evidence_bundle.py`: additive `EvidenceBundle` export adapter using existing MARACA records and serialization only.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\tests\test_evidence_bundle_export.py`: focused pytest coverage for mapping, deterministic serialization, source/request de-duplication, validation notes/status, answer/claim links, SynthesisResult-shaped input, input immutability, and side-effect guards.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\src\ingestion\social_source_candidates.py`: additive mapper from inert watch/social candidate data to existing MARACA source, freshness, and ingestion record shapes.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\tests\test_social_source_candidates.py`: focused pytest/unittest coverage for mapping, defaults, enum/string handling, deterministic IDs, payload serialization, input immutability, and side-effect guards.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\src\shared\connection_settings.py`: additive LLM connection registry with injected mapping loader, alias policy, defaults, endpoint helper, and redaction helpers.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\tests\test_connection_settings.py`: focused pytest coverage for standard key, alias precedence, injected mapping overrides, redaction, `.env.example`, endpoint normalization, and side-effect guard terms.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\.env.example`: additive optional LLM adapter settings block.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\src\storage\qdrant_runtime.py`: documented `QDRANT_COLLECTION` default wiring with explicit override precedence and injectable-client preservation.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\src\storage\neo4j_runtime.py`: documented `NEO4J_DATABASE` default wiring with explicit override precedence and injectable-client preservation.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\src\backend_app\health.py`: health reporting for `QDRANT_COLLECTION` and `NEO4J_DATABASE`.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\tests\test_backend_health.py`: focused env-file coverage for the documented vars.
+- `C:\Users\fredo\git_repos\MARACA\maraca_V02\tests\test_backend_adapters.py`: focused runtime default, fallback, and explicit override coverage for the documented vars.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\backend\media_release_gate.py`: additive pure media release gate with serializable check/result records and no publishing integration.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_media_release_gate.py`: focused pytest coverage for all-pass release, individual blockers, serialization, centralized constants, and side-effect guards.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_social_scout_contracts.py`: focused pytest coverage proving social-scout remains mock/read-only/local-only and real APIs/scraping remain blocked.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\workspaces\social-scout\AGENTS.md`: strengthened social-scout agent contract.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\workspaces\social-scout\TOOLS.md`: strengthened social-scout tool contract.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\backend\adapter_factory.py`: media release gate factory/delegation boundary added to the existing adapter factory.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_adapter_factory.py`: focused coverage for media release gate factory exposure and no client/publishing/HTTP construction.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\backend\publishing_adapter.py`: publishing adapter now validates a precomputed media release gate result before client execution.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\backend\publishing.py`: publishing agent request now forwards the precomputed media release gate result and audits gate failures as blocked.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\gated_adapter_helpers.py`: shared publishing helpers now provide approved and blocked media release gate result fixtures.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_publishing_adapter.py`: focused coverage for release-gate enforcement at the publishing adapter boundary.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_publishing_agent.py`: focused coverage for release-gate forwarding and blocked audit events at the publishing agent boundary.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\backend\publishing_contracts.py`: shared publish binding constants and deterministic payload hash/material helpers.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_publishing_contracts.py`: focused coverage for publish binding helper determinism and centralized field names.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\backend\publishing_contracts.py`: publishing-local HMAC signing, signature payload, and constant-time signature verification helpers.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\backend\publishing_adapter.py`: signed publish binding verification before client execution.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\gated_adapter_helpers.py`: signed publish binding fixtures for adapter and agent tests.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_publishing_adapter.py`: focused coverage for missing, invalid, and tampered publish binding signatures before client execution.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_publishing_agent.py`: focused coverage for signature-failure blocked audit events.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\tests\test_publishing_contracts.py`: focused coverage for deterministic signature payloads and signature changes when bound fields change.
+- `pyproject.toml`: minimal project metadata.
 - `PROJECT_FILE_FUNCTION_MODULE_OVERVIEW.md`: generated AST inventory of modules/classes/functions/methods.
 - `DETAILED_REPOSITORY_SUMMARY.md`: source-backed summary of relevant project roles and interfaces.
 - `PROJECT_ORCHESTRATION_TRACKER.md`: milestones, task state, issues, and dependency rules.
 - `CHANGE_REQUESTS.md`: exact change requests for future validator/worker flow.
 - `NEW_CHAT_HANDOFF_PROMPT.md`: takeover prompt and current handoff summary.
 
+## Verification
+
+- `python -m pytest tests/test_contracts.py`: blocked because system Python is not installed/available.
+- Bundled Python pytest attempt: blocked because pytest is not installed in the bundled runtime.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest discover -s tests`: passed, 7 tests.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed.
+- Scope inspection for network/API/service/scheduler/publish terms found no implementation; only docstring/test data references.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest tests.test_ai_art_safety_gateway`: passed, 6 tests.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest discover -s tests`: passed, 13 tests after CR-HAR-002.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-002.
+- Scope inspection of the CR-HAR-002 owned files found no `requests`, `httpx`, `socket`, `subprocess`, publish, social, scheduler, scrape, or service side-effect path.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest tests.test_maraca_evidence_gateway`: passed, 7 tests after CR-HAR-003.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_maraca_evidence_gateway`: passed, 8 tests after CR-HAR-009.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 72 tests after CR-HAR-009.
+- `C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-009.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest discover -s tests`: passed, 20 tests after CR-HAR-003.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-003.
+- Scope inspection of the CR-HAR-003 owned files found no `requests`, `httpx`, `socket`, `subprocess`, publish, social, scheduler, scrape, service, filesystem, or network side-effect path.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest tests.test_gate_state_machine`: passed, 12 tests after evidence-detail tightening.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest discover -s tests`: passed, 32 tests after CR-HAR-004.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-004.
+- Scope inspection of the CR-HAR-004 owned files found no `requests`, `httpx`, `socket`, `subprocess`, publish, social, scheduler, scrape, service, filesystem, or network side-effect path.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest tests.test_scheduler`: passed, 11 tests after empty-schedule close-up fix.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest discover -s tests`: passed, 43 tests after CR-HAR-005.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-005.
+- Scope inspection of the CR-HAR-005 owned files found no sleep, thread, timer, `requests`, `httpx`, `socket`, `subprocess`, filesystem, publish, social, watch, service, scrape, or gateway execution path.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_watch_social`: passed, 9 tests after CR-HAR-006.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 52 tests after CR-HAR-006.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-006.
+- Scope inspection of the CR-HAR-006 owned files found no real network, scraping, filesystem persistence, service/background execution, scheduler execution, publishing, MARACA, or AI-Art path; only deliberate redaction guard strings for `secret`, `token`, and `api_key` appeared.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_run_ledger`: passed, 9 tests after CR-HAR-007.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 61 tests after CR-HAR-007.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-007.
+- Scope inspection of the CR-HAR-007 owned files found no network, API, scraping, service/background execution, scheduler execution, publishing, credentials, MARACA, or AI-Art path; scan hits were only forbidden-token strings inside the test guard list.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_policy_gateway`: passed, 10 tests after CR-HAR-008.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 71 tests after CR-HAR-008.
+- `C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src\harness_orchestrator\adapters\policy_gateway.py tests\test_policy_gateway.py`: passed after CR-HAR-008.
+- Scope inspection of the CR-HAR-008 owned files found no MARACA, AI-Art, package export, scheduler, social, publishing, filesystem, network, HTTP, subprocess, service, credential, or real policy wiring path; scan hits were only forbidden-token strings inside the test guard list.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_coordinator`: passed, 6 tests after CR-HAR-010.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 78 tests after CR-HAR-010.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-010.
+- Scope inspection of the CR-HAR-010 owned files found no forbidden runtime/service path; scan hits were only forbidden-token strings inside the test guard list.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_approval_decisions`: passed, 7 tests after CR-HAR-011.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 85 tests after CR-HAR-011.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-011.
+- Scope inspection of the CR-HAR-011 owned files found no forbidden runtime/service path; scan hits were only forbidden-token strings inside the test guard list.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_approval_inbox`: passed, 9 tests after CR-HAR-012.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 94 tests after CR-HAR-012.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: first CR-HAR-012 run hit a transient Windows pycache rename permission error for `tests\__pycache__\test_approval_inbox.cpython-312.pyc`; rerun passed.
+- Scope inspection of the CR-HAR-012 owned files found no forbidden runtime/service path; scan hits were only forbidden-token strings inside the test guard list.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_human_review_gate_package`: passed, 11 tests after CR-HAR-013.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 105 tests after CR-HAR-013.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-013.
+- Scope inspection of the CR-HAR-013 owned files found no forbidden runtime/service path; scan hits were only deliberate forbidden-term guard strings inside the test guard list.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_approval_audit_binding`: passed, 9 tests after CR-HAR-014.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 114 tests after CR-HAR-014.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-014.
+- Scope inspection of the CR-HAR-014 owned files found no forbidden runtime/service path; scan hits were only deliberate forbidden-term guard strings inside the test guard list.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_approval_audit_ledger`: passed, 11 tests after CR-HAR-015.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 125 tests after CR-HAR-015.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-015.
+- Scope inspection of the CR-HAR-015 implementation file found no forbidden runtime/service path; scan hits were only deliberate forbidden-term guard strings inside the test guard list.
+- CR-HAR-015 evaluator independent edge probe passed: a preloaded ledger event with the same payload digest and a different event id blocked with `approval-audit-payload-digest-already-recorded` and left `ledger.to_dict()` unchanged.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_maraca_runtime_readiness`: passed, 11 tests after CR-HAR-016.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 136 tests after CR-HAR-016.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-016.
+- CR-HAR-016 evaluator independent edge probe passed: secret-like required package/config names such as `MARACA_API_KEY_PACKAGE` and `runtime_password` blocked and serialized only `<redacted>` without raw names or values.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_runtime_integration_preflight`: passed, 12 tests after CR-HAR-017.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 148 tests after CR-HAR-017.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-017.
+- CR-HAR-017 evaluator independent edge probe passed: secret-like gate/dependency/audit names and metadata values were redacted, wrong work/readiness data blocked, and the caller snapshot was not mutated.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_maraca_runtime_invocation`: passed, 13 tests after CR-HAR-018 evaluator remediation.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 161 tests after CR-HAR-018 evaluator remediation.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-018.
+- CR-HAR-018 validator/evaluator independent probes passed: nested dataclass/to_dict/request-like objects plus secret-like runtime settings/config/metadata names and values were redacted, execution-intent and mismatched work/run data blocked, serialized output contained `<redacted>` without raw secret-like material, and caller mappings were not mutated.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_maraca_runtime_result_intake`: passed, 13 tests after CR-HAR-019.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 174 tests after CR-HAR-019.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-019.
+- CR-HAR-019 validator/evaluator independent probes passed: nested dataclass/to_dict result evidence and output were redacted, work identity mismatch and execution-intent fields blocked, serialized output contained `<redacted>` without raw secret-like material, and caller mappings/objects were not mutated.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_maraca_runtime_result_ledger`: passed, 9 tests after CR-HAR-020.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 183 tests after CR-HAR-020.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-020.
+- CR-HAR-020 evaluator independent probes passed: plain mapping recorded one dependency and one audit event, preseeded duplicate payload digest failed closed without ledger mutation, secret-like mapping failed closed without ledger mutation, and the implementation forbidden behavior scan was clean.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest tests.test_ledger_checkpoint`: passed, 12 tests after CR-HAR-021.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B -m unittest discover -s tests`: passed, 195 tests after CR-HAR-021.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src tests`: passed after CR-HAR-021.
+- CR-HAR-021 parent evaluator checklist passed: deterministic digest for same snapshot to two explicit paths, malformed/minimal snapshot no-write, caller mapping no-mutation, forbidden source scan clean, and scope inspection found only `ledger_checkpoint.py` and `test_ledger_checkpoint.py` as CR-HAR-021 files.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest tests/test_evidence_bundle_export.py`: passed, 5 tests after CR-MAR-001.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest`: first full-suite attempt passed 272 tests but hit a Windows temp permission error at `C:\Users\fredo\AppData\Local\Temp\pytest-of-fredo`.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest --basetemp .pytest_tmp`: passed, 273 tests after CR-MAR-001.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src\synthesis\evidence_bundle.py tests\test_evidence_bundle_export.py`: passed after CR-MAR-001.
+- Scope inspection of the CR-MAR-001 implementation file found no network, API, scraping, service/background execution, scheduler execution, publishing, credential, AI-Art, Harness implementation, retrieval execution, planning, repository, or client path.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest tests/test_social_source_candidates.py`: passed, 8 tests after CR-MAR-002.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest --basetemp .pytest_tmp`: passed, 281 tests after CR-MAR-002.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src\ingestion\social_source_candidates.py tests\test_social_source_candidates.py`: passed after CR-MAR-002.
+- Scope inspection of the CR-MAR-002 owned files found no network, API, scraping, service/background execution, scheduler execution, publishing, credential, source registry mutation, retrieval execution, ingestion execution, Harness implementation, or AI-Art edits; scan hits were only the `Harness watch-style` docstring and deliberate redaction guard strings for `secret`, `token`, and `api_key`.
+- CR-MAR-002 evaluator review initially failed only because pre-existing CR-MAR-001 untracked files were included in broad git status; after separate accounting for those files, evaluator review passed.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest tests/test_connection_settings.py`: passed, 8 tests after CR-MAR-003.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest --basetemp .pytest_tmp`: passed, 289 tests after CR-MAR-003.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src\shared\connection_settings.py tests\test_connection_settings.py`: passed after CR-MAR-003.
+- Scope inspection of the CR-MAR-003 owned files found no LLM/client/network calls, API calls, scraping, service/background execution, scheduler execution, publishing, process env reads, storage/runtime/health mutation, Harness implementation, or AI-Art edits; scan hits were only test guard strings and test `Path` use for `.env.example`.
+- CR-MAR-003 evaluator review passed; residual risk is intentionally registry/helper-only behavior not wired into a runtime consumer.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest tests/test_backend_adapters.py tests/test_backend_health.py`: initial focused run passed 18 tests but hit the known Windows temp permission error at `C:\Users\fredo\AppData\Local\Temp\pytest-of-fredo` during `tmp_path` setup.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest tests/test_backend_adapters.py tests/test_backend_health.py --basetemp .pytest_tmp`: passed, 19 tests after CR-MAR-004.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\git_repos\MARACA\MARACA-1\.venv\Scripts\python.exe -m pytest --basetemp .pytest_tmp`: passed, 291 tests after CR-MAR-004.
+- `$env:PYTHONPATH='src'; C:\Users\fredo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m compileall src\backend_app\health.py src\storage\qdrant_runtime.py src\storage\neo4j_runtime.py tests\test_backend_health.py tests\test_backend_adapters.py`: passed after CR-MAR-004.
+- Scope inspection of the CR-MAR-004 owned files found only intended `QDRANT_COLLECTION` and `NEO4J_DATABASE` wiring plus existing backend test references; no social, publishing, LLM, AI-Art, or Harness behavior was added.
+- CR-MAR-004 evaluator review passed; strict service health remains environment-dependent as before.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests/test_media_release_gate.py`: passed, 21 tests after CR-AIA-001; pytest reported a local `.pytest_cache` permission warning only.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests/test_media_release_gate.py tests/test_publishing_adapter.py tests/test_image_provenance.py tests/test_critic_curator.py tests/test_security_review.py tests/test_review_status.py`: passed, 76 tests after CR-AIA-001; pytest reported a local `.pytest_cache` permission warning only.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m compileall backend\media_release_gate.py tests\test_media_release_gate.py`: passed after CR-AIA-001.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest -p no:cacheprovider`: passed, 599 tests after CR-AIA-001; one Starlette/httpx deprecation warning from the existing FastAPI test client stack.
+- Scope inspection of the CR-AIA-001 owned files found no publish/factory/service/runtime/network/scheduler/scraping/credential path; forbidden-term hits were only deliberate guard strings inside `tests/test_media_release_gate.py`.
+- CR-AIA-001 evaluator review passed; residual risk is intentionally deferred wiring because this CR does not integrate the gate into publishing paths.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests/test_social_scout_contracts.py -p no:cacheprovider`: passed, 4 tests after CR-AIA-002.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests/test_social_scout_contracts.py tests/test_openclaw_workspace.py tests/test_tree_shape.py tests/test_repo_paths.py -p no:cacheprovider`: passed, 20 tests after CR-AIA-002.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m compileall tests\test_social_scout_contracts.py`: passed after CR-AIA-002.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest -p no:cacheprovider`: passed, 603 tests after CR-AIA-002; one Starlette/httpx deprecation warning from the existing FastAPI test client stack.
+- Scope inspection of the CR-AIA-002 owned files found only negative/blocking doc language and deliberate guard strings; no runtime, network, scraping, social API, credential, publishing, factory, service, Harness, or MARACA path was added.
+- CR-AIA-002 evaluator review passed; residual risk is low and expected because this CR is contract/doc enforcement, not runtime social connector implementation.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests\test_adapter_factory.py tests\test_media_release_gate.py -q -p no:cacheprovider`: passed, 29 tests after CR-AIA-003.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m compileall backend\adapter_factory.py tests\test_adapter_factory.py`: passed after CR-AIA-003.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\ruff.exe check backend\adapter_factory.py tests\test_adapter_factory.py`: passed after CR-AIA-003.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest -p no:cacheprovider`: passed, 605 tests after CR-AIA-003; one Starlette/httpx deprecation warning from the existing FastAPI test client stack.
+- Scope inspection of the CR-AIA-003 owned files found only pre-existing factory HTTP/publishing/secret responsibilities plus new tests that deliberately block client/publishing/HTTP construction during media release gate evaluation.
+- CR-AIA-003 evaluator review passed; residual risk is the intended dependency that `backend/adapter_factory.py` now imports the CR-AIA-001 media release gate.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests\test_publishing_adapter.py tests\test_publishing_agent.py -q -p no:cacheprovider`: passed, 33 tests after CR-AIA-004.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests\test_publishing_adapter.py tests\test_publishing_agent.py tests\test_adapter_factory.py tests\test_media_release_gate.py tests\test_execution_gate.py tests\test_publishing_contracts.py tests\test_publishing_status.py -q -p no:cacheprovider`: passed, 83 tests after CR-AIA-004.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m compileall backend\publishing_adapter.py backend\publishing.py tests\gated_adapter_helpers.py tests\test_publishing_adapter.py tests\test_publishing_agent.py`: passed after CR-AIA-004.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\ruff.exe check backend\publishing_adapter.py backend\publishing.py tests\gated_adapter_helpers.py tests\test_publishing_adapter.py tests\test_publishing_agent.py`: passed after CR-AIA-004.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest -p no:cacheprovider`: passed, 618 tests after CR-AIA-004; one Starlette/httpx deprecation warning from the existing FastAPI test client stack.
+- Scope inspection of the CR-AIA-004 owned files found no publishing-side call to `evaluate_media_release_gate`, no new network/HTTP, credentials, social API, scraping, scheduler execution, service wiring, external publishing integration, Harness, or MARACA path; scan hits were pre-existing helper secret/token fixtures and intentional `media_release_gate_result` plumbing.
+- CR-AIA-004 evaluator review passed; its residual publish binding risk was closed by CR-AIA-005.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests\test_publishing_contracts.py tests\test_publishing_adapter.py tests\test_publishing_agent.py -p no:cacheprovider`: passed, 44 tests after CR-AIA-005.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests\test_adapter_factory.py tests\test_media_release_gate.py tests\test_execution_gate.py tests\test_publishing_status.py -q -p no:cacheprovider`: passed, 47 tests after CR-AIA-005.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m compileall backend\publishing_adapter.py backend\publishing.py backend\publishing_contracts.py tests\gated_adapter_helpers.py tests\test_publishing_adapter.py tests\test_publishing_agent.py tests\test_publishing_contracts.py`: passed after CR-AIA-005.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\ruff.exe check backend\publishing_adapter.py backend\publishing.py backend\publishing_contracts.py tests\gated_adapter_helpers.py tests\test_publishing_adapter.py tests\test_publishing_agent.py tests\test_publishing_contracts.py`: passed after CR-AIA-005.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest -p no:cacheprovider`: passed, 626 tests after CR-AIA-005; one Starlette/httpx deprecation warning from the existing FastAPI test client stack.
+- Scope inspection of the CR-AIA-005 owned files found no publishing-side call to `evaluate_media_release_gate`, no new network/HTTP, credentials, social API, scraping, scheduler execution, service wiring, external publishing integration, Harness, or MARACA path; scan hits were negative test assertions and existing helper class names.
+- CR-AIA-005 evaluator review passed; its residual unsigned-binding risk was closed by CR-AIA-006.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests\test_publishing_contracts.py tests\test_publishing_adapter.py tests\test_publishing_agent.py -p no:cacheprovider`: passed, 54 tests after CR-AIA-006.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest tests\test_adapter_factory.py tests\test_media_release_gate.py tests\test_execution_gate.py tests\test_publishing_status.py tests\test_policy_contracts.py -q -p no:cacheprovider`: passed, 56 tests after CR-AIA-006.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m compileall backend\publishing_adapter.py backend\publishing_contracts.py tests\gated_adapter_helpers.py tests\test_publishing_adapter.py tests\test_publishing_agent.py tests\test_publishing_contracts.py`: passed after CR-AIA-006.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\ruff.exe check backend\publishing_adapter.py backend\publishing_contracts.py tests\gated_adapter_helpers.py tests\test_publishing_adapter.py tests\test_publishing_agent.py tests\test_publishing_contracts.py`: passed after CR-AIA-006.
+- `C:\Users\fredo\git_repos\AI-Art\AI-Artist\.venv\Scripts\python.exe -m pytest -p no:cacheprovider`: passed, 636 tests after CR-AIA-006; one Starlette/httpx deprecation warning from the existing FastAPI test client stack.
+- Scope inspection of the CR-AIA-006 owned files found no publishing-side call to `evaluate_media_release_gate`, no raw HMAC/canonical logic in the adapter, no new network/HTTP, credentials, social API, scraping, scheduler execution, service wiring, external publishing integration, Harness, or MARACA path; scan hits were negative test assertions and existing helper class names.
+- CR-AIA-006 evaluator review passed after switching signature verification from direct string equality to `hmac.compare_digest`; residual risk is that the local deterministic signing key is still development-local and not an external KMS/rotation model.
+
 ## Next Gate
 
-- Select and validate one exact change request before any code-worker implementation.
-- Do not implement CR-HAR, CR-MAR, or CR-AIA until validator approves exact scope.
+- CR-HAR-025 close-up, local focused/full/compile verification, source guard, and scope note are complete, and the MARACA v2 sync remains current.
+- Harness CRs listed in `CHANGE_REQUESTS.md` are implemented and tested locally through CR-HAR-025; CR-MAR-001 through CR-MAR-004 and CR-AIA-001 through CR-AIA-006 are complete locally.
+- CR-HAR-010 composes existing Harness-only injected/inert policy, evidence, safety, release-state, supplemental gate, and in-memory ledger boundaries for one manual governed run.
+- CR-HAR-012 adds only an explicit, local-data approval inbox composition boundary; it does not add persistence, scheduler/watch execution, MARACA runtime, AI-Art runtime, publishing, network, subprocess, services, credentials, runtime UI, or hidden persistence.
+- CR-HAR-013 is complete locally after worker implementation, validator remediation, evaluator-RED remediation, final validator GREEN, and final evaluator GREEN.
+- CR-HAR-014 is complete locally after worker implementation, validator GREEN, and evaluator GREEN.
+- CR-HAR-015 is complete locally after worker implementation, validator GREEN, evaluator GREEN, and duplicate-ledger-payload remediation.
+- CR-HAR-016 is complete locally after OA1 proposal, parent implementation, validator GREEN, evaluator GREEN, and secret-like readiness redaction probe.
+- CR-HAR-017 is complete locally after OA1 proposal, parent fallback implementation, validator GREEN, evaluator-thread tooling failures, parent-run evaluator checklist GREEN, and secret-like preflight redaction/non-mutation probe.
+- CR-HAR-018 is complete locally after OA1 proposal, replacement worker implementation, evaluator-RED remediation, remediation validator GREEN, final evaluator GREEN, focused 13 OK, full Harness 161 OK, compileall OK, and nested secret-like invocation redaction/non-mutation probes.
+- CR-HAR-019 is complete locally after OA1 proposal, parent fallback implementation, validator GREEN, evaluator GREEN, focused 13 OK, full Harness 174 OK, compileall OK, and nested secret-like result redaction/identity/no-mutation probes.
+- CR-HAR-020 is complete locally after OA1 proposal, parent fallback implementation, evaluator GREEN, focused 9 OK, full Harness 183 OK, compileall OK, and duplicate/secret-like result-ledger no-mutation probes.
+- CR-HAR-021 is complete locally after OA1 proposal, parent fallback implementation, parent validator/evaluator checklist GREEN, focused 12 OK, full Harness 195 OK, compileall OK, deterministic/no-mutation/fail-closed no-write probes, and forbidden source scan.
+- CR-HAR-023 is complete locally after OA1 proposal, replacement worker implementation, parent remediation after evaluator RED, remediation validator GREEN, replacement evaluator GREEN, focused 12 OK, full Harness 218 OK, compileall OK, top-level/nested checkpoint-result probes, no-mutation probe, and forbidden source scan.
+- CR-HAR-024 is complete locally after OA1 proposal, replacement worker/parent exact-scope remediation, validator GREEN, evaluator GREEN, focused 9 OK, full Harness 227 OK, compileall OK, caller mutation/secret redaction probes, and forbidden source scan.
+- CR-HAR-025 is complete locally after exact-scope implementation in the two owned files, focused 12 OK, full Harness 239 OK, compileall OK, duplicate/blocked/plain-mapping/secret-execution/caller-mutation probes, and source guard. No post-CR-HAR-025 work is authorized without fresh proposal, dependency check, validator review, and exact owned-file assignment.
+- A new chat should start by reading `NEW_CHAT_HANDOFF_PROMPT.md`, rechecking git status for Harness, MARACA, and AI-Art/AI-Artist, then proposing/validating the next CR before any implementation.
+
+## 2026-06-05 OA2 Context-Gate Update
+
+- Current status rechecked in this continuation: Harness remains on `main...origin/main` with modified project docs and untracked `pyproject.toml`, `src/`, and `tests/` containing CR-HAR-001 through CR-HAR-025 work.
+- MARACA recheck: `C:\Users\fredo\git_repos\MARACA\maraca_V02` is clean on `main...origin/main`; `HEAD` and `origin/main` are both `84bdbfa1dd50ab92ee2492fffae457216c5667cd`.
+- AI-Art recheck: `C:\Users\fredo\git_repos\AI-Art\AI-Artist` still has existing local CR-AIA-001 through CR-AIA-006 changes; these remain out of Harness scope and must not be reverted or overwritten.
+- Context/window status: the available local goal tool did not expose an exact context percentage in this continuation. Because the visible transcript is already large and prior docs record threshold-overrun behavior, the safe decision is to treat the context gate as over 50 percent for orchestration purposes.
+- OA2 was not launched in this continuation. No worker, validator, evaluator, reviewer, or new implementation task was opened.
+- Prior OA1 cleanup check was attempted for threads `019e9773-8da5-73a3-b0b7-8f1b3dc3895a`, `019e9774-fb10-7f80-a86e-2c2c0cec79fc`, and `019e9776-5a48-7881-83a8-40b7f6d96997`, but background `read_thread` returned `No handler registered` in this runtime even after tool discovery. Treat their status as unknown/stale and do not rely on them for authorization.
+- Required next action in a fresh chat: recheck context/window usage and git status first. If context is at or below 50 percent, launch OA2 on `gpt-5.5` medium to propose the next CR after CR-HAR-025, validate dependencies and exact owned files, then coordinate worker, validator, evaluator, and reviewer loops until GREEN. If context is above 50 percent, update status/handoff only and do not open a new task.
